@@ -72,7 +72,7 @@ social:
   # wangyiyun: {url: http://weibo.com/mashirozx?is_all=1, img: /img/social/wangyiyun.png}
   # zhihu: {url: http://weibo.com/mashirozx?is_all=1, img: /img/social/zhihu.png}
   email: {url: mail:1277518148@qq.com, img: /img/social/email.png}
-  wechat: {url: /#, qrcode: /img/custom/qq.jpg, img: /img/social/QQ.png}
+  qq: {url: /#, qrcode: /img/custom/qq.jpg, img: /img/social/QQ.png}
   wechat: {url: /#, qrcode: /img/custom/wechat.jpg, img: /img/social/wechat.png}
 
 #social  url, img 移动端配置
