@@ -22,7 +22,12 @@
         ·</span>
         <%= date(post.date, 'YYYY-M-D') %><span class="bull">
         ·</span>
-      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+        <span id="busuanzi_value_page_pv"></span>次阅读
+        <span class="bull">
+          ·</span>
+        <span class="post-count"><%= wordcount(post.content) %>字</span>
+      </p>
+      
     </header>
   </div>
 <% } %>
@@ -35,7 +40,7 @@
         <% if (!post.photos[0]){ %>
           <header class="entry-header">
             <h1 class="entry-title"><%- post.title %></h1>
-            <p class="entry-census"><%- post.author %>&nbsp;·&nbsp;<%= date(post.date, 'YYYY-M-D') %>&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
+            <p class="entry-census"><%- post.author %>&nbsp;·&nbsp;<%= date(post.date, 'YYYY-M-D') %>&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读&nbsp;·&nbsp;</p>
 
             <hr>
           </header>

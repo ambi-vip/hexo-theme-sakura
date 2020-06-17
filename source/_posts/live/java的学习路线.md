@@ -21,7 +21,7 @@ description: 我个人的java学习路线
 
 我的学习路线，是先从看视频开始的（在校学过java）
 
-1. [java视频](https://www.bilibili.com/video/av55246614?from=search&seid=5743122730458347058).这个视频比较长。用的工具是idea。内容很是丰富。
+1. [java视频](https://www.bilibili.com/video/BV1sW411T78k).这个视频比较长。用的工具是idea。内容很是丰富。
 2. [spring视频](https://www.bilibili.com/video/av47952931?from=search&seid=5201043618941699024)。看完java写程序没有问题。作为java工程师，要会写系统。打个预防针，这个老师喜欢讲原理，多听几遍吧
 3. [springMvc视频](https://www.bilibili.com/video/av47953244?from=search&seid=5201043618941699024)了解系统的开发步骤
 4. springMybatis 这个不放视频连接了~~~因为我也没有看，需要的自行哔哩哔哩找
@@ -40,7 +40,3 @@ description: 我个人的java学习路线
 7. [java生态圈常用技术框架](https://github.com/aalansehaiyang/technology-talk "java生态圈常用技术框架")
 8. [互联网一线大厂面试+学习指南](https://github.com/AobingJava/JavaFamily "互联网一线大厂面试+学习指南")
 9. [后台技术栈/架构师之路/全栈开发社区](https://github.com/frank-lam/fullstack-tutorial "后台技术栈/架构师之路/全栈开发社区")
-
-
-
-{% fb_img https://i0.hdslb.com/bfs/article/f362d75a6fad0a76089f0741ed41d5990c6eeeae.jpg java学习路线 %}

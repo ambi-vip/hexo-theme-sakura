@@ -15,7 +15,7 @@ tags:
 description:
 ---
 
-## 对volatile的理解
+## 1.对volatile的理解
 ### 1.volatile是java虚拟机提供得轻量级同步机制
 保证可见性、不保证原子性、禁止指令重排
 ### 2.谈谈JMM
@@ -216,7 +216,7 @@ instance(memory);    //2.初始化对象
 ```java
 public static volatile SingletonDemo instance  = null;
 ```
-## 谈谈CAS
+## 2.谈谈CAS
 ### CAS是什么?
 CAS : compareAndSet //比较并交换
 ```java
@@ -361,7 +361,7 @@ T3	第二次版本号：2
 T3	第三次版本号：3
 T4	是否修改成功：false	当前版本号：3
 ```
-## ArrayList是线程不安全，编写一个不安全的案例并给出解决方案
+## 3.ArrayList是线程不安全，编写一个不安全的案例并给出解决方案
 同样的有ArrayList、HashSet、HashMap
 ```java
 public class ContainerNotSafeDemo {
@@ -406,7 +406,7 @@ hashset得底层是hashmap。hashset的add方法是hashmap的put方法。值是�
         return map.put(e, PRESENT)==null;
     }
 ```
-## 公平锁/非公平锁/可重入锁/递归锁/自旋锁
+## 4.公平锁/非公平锁/可重入锁/递归锁/自旋锁
 
 ### 公平锁/非公平锁
 公平锁/非公平锁：并发包中**ReentrantLock**的创建可以指定构造函数的boolean类型来得到公平锁或非公平锁，默认是非公平锁。
@@ -604,7 +604,7 @@ public class SpinLockDemo {
     synchronized没有
     ReentrantLock用来实现分组唤醒需要唤醒的线程，可以精确唤醒，而不是像synchronized要么随机唤醒一个要么唤醒全部线程。
 
-## 6.CountDownLatch/CyclicBarrier/Semaphore
+## 5.CountDownLatch/CyclicBarrier/Semaphore
 ### CountDownLatch
 让一些线程阻塞直到另一个线程完成一系列操作后才被唤醒
 
@@ -758,7 +758,7 @@ public class SemaphoreDemo {
 4	 停3秒后离开车位
 5	 停3秒后离开车位
 ```
-## 7.阻塞队列
+## 6.阻塞队列
 阻塞队列，首先它是一个队列，而一个阻塞队列在数据结构中所起的作用大致是：线程1往阻塞队列中添加元素，而线程2从阻塞队列中移除元素。
 
 当阻塞队列是空时，从队列中获取元素的操作将被**阻塞**。
@@ -879,7 +879,7 @@ public class ProdConsumer_BlockQueueDemo {
     }
 }
 ```
-## 线程池
+## 7.线程池
 
 ### 线程池如何使用？
 #### 架构说明
