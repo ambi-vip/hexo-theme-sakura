@@ -3,12 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="360-site-verification" content="feb6dab772eddc7bd22bef03a4bb4404" />
   <%
   var title = page.title;
-
   if (is_archive()){
     title = __('archive_a');
-
     if (is_month()){
       title += ': ' + page.year + '/' + page.month;
     } else if (is_year()){
@@ -36,6 +35,7 @@
   <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
 <!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
 " type="text/css" media="all"> -->
+
   <script>
   /*Initial Variables*/
   var mashiro_option = new Object();
@@ -45,24 +45,31 @@
    * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
    * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
    */
-  mashiro_option.email_domain = "";
-  mashiro_option.email_name = "";
+  mashiro_option.email_domain = "qq.com";
+  mashiro_option.email_name = "1277518148";
   mashiro_option.cookie_version_control = "";
-  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.qzone_autocomplete = true;
   mashiro_option.site_name = "<%- theme.prefixName%><%- theme.siteName%>";
   mashiro_option.author_name = "<%- theme.siteName%>";
   mashiro_option.site_url = "<%- theme.url%>";
   mashiro_option.v_appId = "<%= theme.v_appId %>";
   mashiro_option.v_appKey = "<%= theme.v_appKey %>";
   mashiro_option.mathjax = "<%= theme.mathjax %>";
-  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
-  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
-
+//   mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+//   mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
   // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
   // mashiro_option.float_player_on = true;
-
   /*End of Initial Variables*/
   </script>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9c41f4db82a47c71154f6e8f72be3706";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>    
   <script type="text/javascript">
   var bg = "<%= theme.bg%>".split(",");
   var bgindex = Math.floor(Math.random()*bg.length);

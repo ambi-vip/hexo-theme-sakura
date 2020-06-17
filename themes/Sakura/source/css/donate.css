@@ -104,6 +104,9 @@
 #donateBox #WeChat {
   background-image: url(/images/donate/wechat.svg);
 }
+#donateBox #Qq {
+  background-image: url(/images/donate/qq.svg);
+}
 #QRBox {
   position: relative;
   top: -100px;

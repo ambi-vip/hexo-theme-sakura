@@ -1,0 +1,310 @@
+---
+title: java开发工具类
+author: Ambi
+avatar: 'https://cdn.jsdelivr.net/gh/AmbitionLover/cdn/img/custom/avatar.jpg'
+authorLink: 'https://sakura.ambitlu.work/'
+authorAbout: 一个好奇的人
+authorDesc: 一个好奇的人
+comments: true
+photos: 'https://cdn.jsdelivr.net/gh/AmbitionLover/cdn@v1.1.3/list_9.jpg'
+categories: 技术
+abbrlink: 1c0806c9
+date: 2020-04-12 19:23:10
+tags:
+keywords:
+description: java开发当然时工具类最好用了。。。。。
+---
+## JAVA Cookie 读写工具类
+```java
+public class CookieUtil {
+ 
+    // 默认缓存时间,单位/秒, 2H
+    private static final int COOKIE_MAX_AGE = 60 * 60 * 2;
+    // 保存路径,根路径
+    private static final String COOKIE_PATH = "/";
+ 
+    /**
+     * 保存
+     *
+     * @param response
+     * @param key
+     * @param value
+     * @param ifRemember
+     */
+    public static void set(HttpServletResponse response, String key, String value, boolean ifRemember) {
+        int age = ifRemember?COOKIE_MAX_AGE:-1;
+        set(response, key, value, null, COOKIE_PATH, age, true);
+    }
+ 
+    /**
+     * 保存
+     *
+     * @param response
+     * @param key
+     * @param value
+     * @param maxAge
+     */
+    private static void set(HttpServletResponse response, String key, String value, String domain, String path, int maxAge, boolean isHttpOnly) {
+        Cookie cookie = new Cookie(key, value);
+        if (domain != null) {
+            cookie.setDomain(domain);
+        }
+        cookie.setPath(path);
+        cookie.setMaxAge(maxAge);
+        cookie.setHttpOnly(isHttpOnly);
+        response.addCookie(cookie);
+    }
+ 
+    /**
+     * 查询value
+     *
+     * @param request
+     * @param key
+     * @return
+     */
+    public static String getValue(HttpServletRequest request, String key) {
+        Cookie cookie = get(request, key);
+        if (cookie != null) {
+            return cookie.getValue();
+        }
+        return null;
+    }
+ 
+    /**
+     * 查询Cookie
+     *
+     * @param request
+     * @param key
+     */
+    private static Cookie get(HttpServletRequest request, String key) {
+        Cookie[] arr_cookie = request.getCookies();
+        if (arr_cookie != null && arr_cookie.length > 0) {
+            for (Cookie cookie : arr_cookie) {
+                if (cookie.getName().equals(key)) {
+                    return cookie;
+                }
+            }
+        }
+        return null;
+    }
+ 
+    /**
+     * 删除Cookie
+     *
+     * @param request
+     * @param response
+     * @param key
+     */
+    public static void remove(HttpServletRequest request, HttpServletResponse response, String key) {
+        Cookie cookie = get(request, key);
+        if (cookie != null) {
+            set(response, key, "", null, COOKIE_PATH, 0, true);
+        }
+    }
+ 
+}
+```
+
+## JWT 令牌生成
+需要导包
+```
+<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+```
+```java
+
+public class JwtUtil {
+
+    //有效期为
+    public static final Long JWT_TTL = 3600000L;// 60 * 60 *1000  一个小时
+
+    //Jwt令牌信息
+    public static final String JWT_KEY = "Ambi";
+
+    public static String createJWT(String id, String subject, Long ttlMillis) {
+        //指定算法
+        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+
+        //当前系统时间
+        long nowMillis = System.currentTimeMillis();
+        //令牌签发时间
+        Date now = new Date(nowMillis);
+
+        //如果令牌有效期为null，则默认设置有效期1小时
+        if (ttlMillis == null) {
+            ttlMillis = JwtUtil.JWT_TTL;
+        }
+
+        //令牌过期时间设置
+        long expMillis = nowMillis + ttlMillis;
+        Date expDate = new Date(expMillis);
+
+        //生成秘钥
+        SecretKey secretKey = generalKey();
+
+        //封装Jwt令牌信息
+        JwtBuilder builder = Jwts.builder()
+                .setId(id)                    //唯一的ID
+                .setSubject(subject)          // 主题  可以是JSON数据
+                .setIssuer("admin")          // 签发者
+                .setIssuedAt(now)             // 签发时间
+                .signWith(signatureAlgorithm, secretKey) // 签名算法以及密匙
+                .setExpiration(expDate);      // 设置过期时间
+        return builder.compact();
+    }
+
+    /**
+     * 生成加密 secretKey
+     *
+     * @return
+     */
+    public static SecretKey generalKey() {
+        byte[] encodedKey = Base64.getEncoder().encode(JwtUtil.JWT_KEY.getBytes());
+        SecretKey key = new SecretKeySpec(encodedKey, 0, encodedKey.length, "AES");
+        return key;
+    }
+
+
+    /**
+     * 解析令牌数据
+     *
+     * @param jwt
+     * @return
+     * @throws Exception
+     */
+    public static Claims parseJWT(String jwt) throws Exception {
+        SecretKey secretKey = generalKey();
+        return Jwts.parser()
+                .setSigningKey(secretKey)
+                .parseClaimsJws(jwt)
+                .getBody();
+    }
+}
+```
+
+## 随机字符串
+```java
+public class RandomValueUtil {
+    public static String base = "abcdefghijklmnopqrstuvwxyz0123456789";
+    private static String firstName = "赵钱孙李周吴郑王冯陈褚卫蒋沈韩杨朱秦尤许何吕施张孔曹严华金魏陶姜戚谢邹喻柏水窦章云苏潘葛奚范彭郎鲁韦昌马苗凤花方俞任袁柳酆鲍史唐费廉岑薛雷贺倪汤滕殷罗毕郝邬安常乐于时傅皮卞齐康伍余元卜顾孟平黄和穆萧尹姚邵湛汪祁毛禹狄米贝明臧计伏成戴谈宋茅庞熊纪舒屈项祝董梁杜阮蓝闵席季麻强贾路娄危江童颜郭梅盛林刁钟徐邱骆高夏蔡田樊胡凌霍虞万支柯咎管卢莫经房裘缪干解应宗宣丁贲邓郁单杭洪包诸左石崔吉钮龚程嵇邢滑裴陆荣翁荀羊於惠甄魏加封芮羿储靳汲邴糜松井段富巫乌焦巴弓牧隗山谷车侯宓蓬全郗班仰秋仲伊宫宁仇栾暴甘钭厉戎祖武符刘姜詹束龙叶幸司韶郜黎蓟薄印宿白怀蒲台从鄂索咸籍赖卓蔺屠蒙池乔阴郁胥能苍双闻莘党翟谭贡劳逄姬申扶堵冉宰郦雍却璩桑桂濮牛寿通边扈燕冀郏浦尚农温别庄晏柴瞿阎充慕连茹习宦艾鱼容向古易慎戈廖庚终暨居衡步都耿满弘匡国文寇广禄阙东殴殳沃利蔚越夔隆师巩厍聂晁勾敖融冷訾辛阚那简饶空曾毋沙乜养鞠须丰巢关蒯相查后江红游竺权逯盖益桓公万俟司马上官欧阳夏侯诸葛闻人东方赫连皇甫尉迟公羊澹台公冶宗政濮阳淳于仲孙太叔申屠公孙乐正轩辕令狐钟离闾丘长孙慕容鲜于宇文司徒司空亓官司寇仉督子车颛孙端木巫马公西漆雕乐正壤驷公良拓拔夹谷宰父谷粱晋楚阎法汝鄢涂钦段干百里东郭南门呼延归海羊舌微生岳帅缑亢况后有琴梁丘左丘东门西门商牟佘佴伯赏南宫墨哈谯笪年爱阳佟第五言福百家姓续";
+    private static String girl = "秀娟英华慧巧美娜静淑惠珠翠雅芝玉萍红娥玲芬芳燕彩春菊兰凤洁梅琳素云莲真环雪荣爱妹霞香月莺媛艳瑞凡佳嘉琼勤珍贞莉桂娣叶璧璐娅琦晶妍茜秋珊莎锦黛青倩婷姣婉娴瑾颖露瑶怡婵雁蓓纨仪荷丹蓉眉君琴蕊薇菁梦岚苑婕馨瑗琰韵融园艺咏卿聪澜纯毓悦昭冰爽琬茗羽希宁欣飘育滢馥筠柔竹霭凝晓欢霄枫芸菲寒伊亚宜可姬舒影荔枝思丽 ";
+    public static String boy = "伟刚勇毅俊峰强军平保东文辉力明永健世广志义兴良海山仁波宁贵福生龙元全国胜学祥才发武新利清飞彬富顺信子杰涛昌成康星光天达安岩中茂进林有坚和彪博诚先敬震振壮会思群豪心邦承乐绍功松善厚庆磊民友裕河哲江超浩亮政谦亨奇固之轮翰朗伯宏言若鸣朋斌梁栋维启克伦翔旭鹏泽晨辰士以建家致树炎德行时泰盛雄琛钧冠策腾楠榕风航弘";
+    public static final String[] email_suffix = "@gmail.com,@yahoo.com,@msn.com,@hotmail.com,@aol.com,@ask.com,@live.com,@qq.com,@0355.net,@163.com,@163.net,@263.net,@3721.net,@yeah.net,@googlemail.com,@126.com,@sina.com,@sohu.com,@yahoo.com.cn".split(",");
+
+    public static int getNum(int start, int end) {
+        return (int) (Math.random() * (end - start + 1) + start);
+    }
+
+    /***
+     *
+     * Project Name: recruit-helper-util
+     * <p>随机生成Email
+     *
+     * @author youqiang.xiong
+     * @date 2018年5月23日  下午2:13:06
+     * @version v1.0
+     * @since
+     * @param lMin
+     *         最小长度
+     * @param lMax
+     *         最大长度
+     * @return
+     */
+    public static String getEmail(int lMin, int lMax) {
+        int length = getNum(lMin, lMax);
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < length; i++) {
+            int number = (int) (Math.random() * base.length());
+            sb.append(base.charAt(number));
+        }
+        sb.append(email_suffix[(int) (Math.random() * email_suffix.length)]);
+        return sb.toString();
+    }
+
+    private static String[] telFirst = "134,135,136,137,138,139,150,151,152,157,158,159,130,131,132,155,156,133,153".split(",");
+
+    /***
+     *
+     * Project Name: recruit-helper-util
+     * <p>随机生成手机号码
+     *
+     * @author youqiang.xiong
+     * @date 2018年5月23日  下午2:14:17
+     * @version v1.0
+     * @since
+     * @return
+     */
+    public static String getTelephone() {
+        int index = getNum(0, telFirst.length - 1);
+        String first = telFirst[index];
+        String second = String.valueOf(getNum(1, 888) + 10000).substring(1);
+        String thrid = String.valueOf(getNum(1, 9100) + 10000).substring(1);
+        return first + second + thrid;
+    }
+
+    /***
+     *
+     * Project Name: recruit-helper-util
+     * <p>随机生成8位电话号码
+     *
+     * @author youqiang.xiong
+     * @date 2018年5月23日  下午2:15:31
+     * @version v1.0
+     * @since
+     * @return
+     */
+    public static String getLandline() {
+        int index = getNum(0, telFirst.length - 1);
+        String first = telFirst[index];
+        String second = String.valueOf(getNum(1, 888) + 10000).substring(1);
+        String thrid = String.valueOf(getNum(1, 9100) + 10000).substring(1);
+        return first + second + thrid;
+    }
+
+
+    /**
+     * 返回中文姓名
+     */
+    public static String name_sex = "";
+
+    /***
+     *
+     * Project Name: recruit-helper-util
+     * <p>返回中文姓名
+     *
+     * @author youqiang.xiong
+     * @date 2018年5月23日  下午2:16:16
+     * @version v1.0
+     * @since
+     * @return
+     */
+    public static String getChineseName() {
+        int index = getNum(0, firstName.length() - 1);
+        String first = firstName.substring(index, index + 1);
+        int sex = getNum(0, 1);
+        String str = boy;
+        int length = boy.length();
+        if (sex == 0) {
+            str = girl;
+            length = girl.length();
+            name_sex = "女";
+        } else {
+            name_sex = "男";
+        }
+        index = getNum(0, length - 1);
+        String second = str.substring(index, index + 1);
+        int hasThird = getNum(0, 1);
+        String third = "";
+        if (hasThird == 1) {
+            index = getNum(0, length - 1);
+            third = str.substring(index, index + 1);
+        }
+        return first + second + third;
+    }
+}
+```
+

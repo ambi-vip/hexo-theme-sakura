@@ -47,20 +47,27 @@ insight:
     img: https://cdn.jsdelivr.net/gh/AmbitionLover/cdn@v1.1.1/img/banner/coding.jpg
 生活:
     zh: 生活
-    en: live
+    en: Live
     img: https://cdn.jsdelivr.net/gh/AmbitionLover/cdn@v1.1.1/img/banner/writing.jpg
 转载:
     zh: 转载
-    en: zhuan
+    en: Reproduced
     img: https://cdn.jsdelivr.net/gh/AmbitionLover/cdn@v1.1.1/img/banner/writing.jpg
 随想:
     zh: 随想
-    en: think
+    en: Think
+    img: https://cdn.jsdelivr.net/gh/AmbitionLover/cdn@v1.1.1/img/banner/writing.jpg
+
+资源:
+    zh: 资源
+    en: Resources
     img: https://cdn.jsdelivr.net/gh/AmbitionLover/cdn@v1.1.1/img/banner/writing.jpg
 
 #tag
 悦读:
     img: https://cdn.jsdelivr.net/gh/AmbitionLover/cdn@v1.1.1/img/banner/reading.jpg
-#tag
 图集:
     img: https://cdn.jsdelivr.net/gh/AmbitionLover/cdn@v1.1.1/img/banner/reading.jpg
+#tag
+java:
+    img: http://pic.netbian.com/uploads/allimg/180517/183147-1526553107e340.jpg

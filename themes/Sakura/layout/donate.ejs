@@ -20,6 +20,7 @@
           <li id="PayPal"><a href="<%- theme.donate.paypal %>" target="_blank">PayPal</a></li>
           <li id="AliPay">AliPay</li>
           <li id="WeChat">WeChat</li>
+          <li id="Qq">Qq支付</li>
         </ul>
         <div id="DonateText" class="tr3">Donate</div>
         <div id="QRBox" class="pos-f left-100">
@@ -31,7 +32,7 @@
     </div>
     <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
     <footer class="post-footer">
-      <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+      <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i>  知识共享-此网站只做技术交流。</a></div>
       <div class="post-tags">
       </div>
       <div class="post-share">
@@ -42,11 +43,11 @@
   </article>
   <section class="author-profile">
     <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
-      <a href="/about/" class="profile gravatar"><img src="<%- (theme.cdn || '') + theme.avatar%>" itemprop="image" alt="hojun" height="70" width="70"></a>
+      <a href="/about/" class="profile gravatar"><img src="<%- (theme.cdn || '') + theme.avatar%>" itemprop="image" alt="Ambi" height="70" width="70"></a>
       <div class="meta">
         <span class="title">Author</span>
         <h3 itemprop="name">
-        <a href="<%- theme.url%>" itemprop="url" rel="author">hojun</a>
+        <a href="<%- theme.url%>" itemprop="url" rel="author">Ambi</a>
         </h3>
       </div>
     </div>
@@ -62,7 +63,8 @@
     var MainBox = $('#MainBox');
     var BTCQR = '/images/donate/BTCQR.png'; // 二维码路径
     var AliPayQR  = '<%- (theme.cdn || '') + theme.donate.alipay %>';
-    var WeChanQR  = '<%- (theme.cdn || '') + theme.donate.wechatSQ %>';
+    var WeChanQR  = '<%- (theme.cdn || '') + "@v1.1.1"+theme.donate.wechat %>';
+    var QqPayQR  = '<%- (theme.cdn || '') +"@v1.1.1"+ theme.donate.qqpay %>';
 
     function showQR(QR) {
       if (QR) {
@@ -84,6 +86,8 @@
         showQR(AliPayQR);
       } else if (thisID === 'WeChat') {
         showQR(WeChanQR);
+      } else if (thisID === 'Qq') {
+        showQR(QqPayQR);
       }
     });
 

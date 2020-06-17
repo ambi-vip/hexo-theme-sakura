@@ -252,7 +252,7 @@ function code_highlight_style () {
       'autocapitalize': 'off',
       'spellcheck': 'false',
       'contenteditable': 'false',
-      'design': 'by hojun'
+      'design': 'by Ambi'
     }
     var ele_name = $('pre:eq(' + i + ')')[0].children[0].className
     var lang = ele_name.substr(0, ele_name.indexOf(' ')).replace('language-', '')
@@ -982,7 +982,7 @@ function get_poem (poem_ele, info_ele) {
     if (xhr.readyState === 4) {
       var data = JSON.parse(xhr.responseText)
       poem.innerHTML = data.data.content
-      info.innerHTML = '【' + data.data.origin.dynasty + '】' + data.data.origin.author + '《' + data.data.origin.title + '》'
+      info.innerHTML = '【' + data.data.origin.dynasty + '】' + data.data.origin.author + '《' + data.data.origin.abbrlink + '》'
     }
   }
   xhr.send()
@@ -1610,8 +1610,8 @@ $(function () {
     $(this).postLike()
   })
   console.log('%c Mashiro %c', 'background:#24272A; color:#ffffff', '', 'https://2heng.xin/')
-  console.log('%c hojun %c', 'background:#24272A; color:#ffffff', '', 'https://www.hojun.cn/')
-  console.log('%c Github %c', 'background:#24272A; color:#ffffff', '', 'https://github.com/honjun/hexo-theme-sakura')
+  console.log('%c Ambi %c', 'background:#24272A; color:#ffffff', '', 'https://blog.ambitlu.work/')
+  console.log('%c Github %c', 'background:#24272A; color:#ffffff', '', 'https://github.com/AmbitionLover')
 })
 var isWebkit = navigator.userAgent.toLowerCase().indexOf('webkit') > -1,
   isOpera = navigator.userAgent.toLowerCase().indexOf('opera') > -1,

@@ -1,6 +1,6 @@
 # site name
 prefixName: さくら荘その
-siteName: Ambi
+siteName: 猫和满天星
 # favicon and site master avatar
 favicon: /images/favicon.ico
 avatar: /img/custom/avatar.jpg
@@ -11,7 +11,7 @@ pjax: 1
 # 1开启
 mathjax: 0
 
-notice: hexo-Sakura主题
+notice: 新博客。用来记录生活中的小灵感
 lazyloadImg: https://cdn.jsdelivr.net/gh/AmbitionLover/cdn/img/loader/orange.progress-bar-stripe-loader.svg
 
 menus:
@@ -21,11 +21,12 @@ menus:
     生活: {path: /categories/生活/, fa: fa-file-text-o }, 
     资源: {path: /categories/资源/, fa: fa-cloud-download }, 
     随想: {path: /categories/随想/, fa: fa-commenting-o },
-    转载: {path: /categories/转载/, fa: fa-book }
+    转载: {path: /categories/转载/, fa: fa-book },
+    标签: {path: /tags, fa: fa-cloud }
   } }
   清单: { path: javascript:;, fa: fa-list-ul faa-vertical, submenus: { 
     书单: {path: /tags/悦读/, fa: fa-th-list faa-bounce }, 
-    番组: {path: /bangumi/, fa: fa-film faa-vertical }, 
+    # 番组: {path: /bangumi/, fa: fa-film faa-vertical }, 
     歌单: {path: /music/, fa: fa-headphones },
     图集: {path: /tags/图集/, fa: fa-photo }
   } }
@@ -34,10 +35,10 @@ menus:
   赞赏: { path: /donate/, fa: fa-heart faa-pulse }
   关于: { path: /, fa: fa-leaf faa-wrench , submenus: { 
     我？: {path: /about/, fa: fa-meetup}, 
-    主题: {path: /theme-sakura/, fa: iconfont icon-sakura },
+    # 主题: {path: /theme-sakura/, fa: iconfont icon-sakura },
     Lab: {path: /lab/, fa: fa-cogs },
   } }
-  客户端: { path: /client/, fa: fa-android faa-vertical }
+  # 客户端: { path: /client/, fa: fa-android faa-vertical }
   # RSS: { path: /atom.xml, fa: fa-rss faa-pulse }
 
 
@@ -57,13 +58,13 @@ bgclass: filter-dot
 # startdash url, title, desc img
 startdash: 
   - {url: https://blog.ambitlu.work, title: Blog, desc: 我的技术博客, img: /img/startdash/blog.png}
-  - {url: http://space.bilibili.com/271849279, title: Bilibili, desc: 博主的b站视频, img: /img/startdash/bilibili.jpg}
+  - {url: /, title: Bilibili, desc: 博主的b站视频, img: /img/startdash/bilibili.jpg}
   - {url: /, title: Ambi的万事屋, desc: 技术服务, img: /img/startdash/wangshiwu.jpg}
 
 
 
 # your site build time or founded date
-siteBuildingTime: 07/17/2018
+siteBuildingTime: 03/16/2020
 
 #social  url, img PC端配置
 social:
@@ -71,7 +72,7 @@ social:
   # sina: {url: http://weibo.com/mashirozx?is_all=1, img: /img/social/sina.png}
   # wangyiyun: {url: http://weibo.com/mashirozx?is_all=1, img: /img/social/wangyiyun.png}
   # zhihu: {url: http://weibo.com/mashirozx?is_all=1, img: /img/social/zhihu.png}
-  email: {url: mail:1277518148@qq.com, img: /img/social/email.png}
+  email: {url: mailto:1277518148@qq.com, img: /img/social/email.png}
   qq: {url: /#, qrcode: /img/custom/qq.jpg, img: /img/social/QQ.png}
   wechat: {url: /#, qrcode: /img/custom/wechat.jpg, img: /img/social/wechat.png}
 
@@ -85,17 +86,18 @@ donate:
   paypal: https://www.paypal.me/AmbitionLover
   alipay: /img/custom/donate/ali_pay.jpg
   wechat: /img/custom/donate/wx_pay.png
-  qq: /img/custom/donate/qq_pay.png
+  qqpay: /img/custom/donate/qq_pay.png
 
 # 视频地址为https://cdn.jsdelivr.net/gh/honjun/hojun@1.2/Unbroken.mp4，配置如下
 movies:
   url: https://cdn.jsdelivr.net/gh/honjun/hojun@1.2
   # 多个视频用逗号隔开，随机获取。支持的格式目前已知MP4,Flv。其他的可以试下，不保证有用
   name: Unbroken.mp4
-
+#Sakura主题歌单 2660651585
+#音乐平台: netease, tencent, kugou, xiami, baidu
 aplayer: 
-  id: 2660651585
-  server: netease
+  id: 3093417137
+  server: tencent
   type: playlist
   fixed: true
   autoplay: false
@@ -109,4 +111,5 @@ aplayer:
 valine: true
 v_appId: FsHC9i2NIhDfD0WpbRci8DSH-gzGzoHsz
 v_appKey: PUPfyrzvDW1gvcdKnY9MHNeL
+
 
