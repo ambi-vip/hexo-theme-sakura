@@ -92,10 +92,10 @@ deploy:
 # backup
 backup:
   type: git
-  message: backup my blog of https://yourname.github.io/
+  message: backup my blog ofhttps://sakura.ambitlu.work/
   repository:
     # github: https://github.com/honjun/honjun.github.io.git,backup
-    coding: git@github.com:AmbitionLover/hexo-sakura.git
+    coding: git@github.com:AmbitionLover/hexo-sakura.git,master
 
 #RSS
 feed:
