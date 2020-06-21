@@ -39,7 +39,7 @@ titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false  #显示草稿
-post_asset_folder: true #开启后。每次创建心的文章就会有资源文件夹
+post_asset_folder: false #开启后。每次创建心的文章就会有资源文件夹
 relative_link: false  #把链接改为与根目录的相对位址
 future: true
 highlight:  #代码块的设置
@@ -90,12 +90,12 @@ deploy:
   branch: master
 
 # backup
-# backup:
-#   type: git
-#   message: backup my blog of https://yourname.github.io/
-#   repository:
-#     # github: https://github.com/honjun/honjun.github.io.git,backup
-#     coding: https://git.coding.net/hojun/hojun.git,backup
+backup:
+  type: git
+  message: backup my blog of https://yourname.github.io/
+  repository:
+    # github: https://github.com/honjun/honjun.github.io.git,backup
+    coding: git@github.com:AmbitionLover/hexo-sakura.git,backup
 
 #RSS
 feed:
